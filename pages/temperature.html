@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature</title>
+    <link rel="stylesheet" href="./temperature.css">
+</head>
+<body>
+    <nav>
+        <a href="../index.html" id="backButtonButton">Back</a>
+    </nav>
+    
+    <h1 id="title">Temperature</h1>
+    <div id="threshold">Threshold: < 20°C/68°F</div>
+    <div class="temperature-container">
+        <div id="icon">🌡️</div>
+        <p id="temperature-data"></p>
+    </div>
+    <button id="toggleButton">Switch to Fahrenheit</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentCityData = JSON.parse(localStorage.getItem('currentCityData'));
+            let isCelsius = true;
+
+            function updateTemperature() {
+                if (currentCityData) {
+                    const temperatureCelsius = currentCityData.temperatureCelsius;
+                    const temperature = isCelsius ? 
+                        `${temperatureCelsius} °C` : 
+                        `${(temperatureCelsius * 9/5 + 32).toFixed(2)} °F`;
+                    
+                    document.getElementById('title').innerHTML = `${currentCityData.cityName}'s Temperature`;
+                    document.getElementById('temperature-data').innerHTML = `${temperature}`;
+                    
+                    document.getElementById('icon').style.backgroundColor = 
+                        temperatureCelsius >= 20 ? 'darkred' : 'lightblue';
+                } else {
+                    document.getElementById('temperature-data').innerHTML = 'No data available';
+                    document.getElementById('toggleButton').disabled = true;
+                }
+            }
+
+            document.getElementById('toggleButton').addEventListener('click', () => {
+                isCelsius = !isCelsius;
+                document.getElementById('toggleButton').innerText = isCelsius ? 'Switch to Fahrenheit' : 'Switch to Celsius';
+                updateTemperature();
+            });
+
+            updateTemperature();
+        });
+    </script>
+</body>
+</html>

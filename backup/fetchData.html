@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Weather Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fetch Weather Data</h1>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>CityName</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>UV Index</th>
+                    <th>Wind Speed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Get Json Data -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loadButton = document.getElementById("loadData");
+            const tableBody = document.querySelector("#dataTable tbody");
+   
+            fetch("sample.json")
+                .then(response => response.json())
+                .then(data => {
+                    tableBody.innerHTML = ""; 
+                    data.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${item.cityName}</td>
+                            <td>${item.temperatureCelsius}</td>
+                            <td>${item.humidity}</td>
+                            <td>${item.uvIndex}</td>
+                            <td>${item.windSpeed}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>

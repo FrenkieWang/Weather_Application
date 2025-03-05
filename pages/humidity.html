@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Humidity</title>
+    <link rel="stylesheet" href="./humidity.css">
+</head>
+<body>
+    <nav>
+        <a href="../index.html" id="backButtonButton">Back</a>
+    </nav>
+    
+    <h1 id="title">Humidity</h1>
+    <div id="threshold">Threshold: ≥ 0.75</div>
+    <div class="humidity-container">
+        <div id="icon">💧</div>
+        <p id="humidity-data"></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentCityData = JSON.parse(localStorage.getItem('currentCityData'));
+
+            function updateHumidity() {
+                if (currentCityData) {
+                    const humidity = currentCityData.humidity;
+                    document.getElementById('title').innerHTML = `${currentCityData.cityName}'s Humidity`;
+                    document.getElementById('humidity-data').innerHTML = `${humidity}`;
+                    document.getElementById('icon').style.backgroundColor = 
+                        humidity >= 0.75 ? 'lightgreen' : 'darkblue';
+                } else {
+                    document.getElementById('humidity-data').innerHTML = 'No data available';
+                }
+            }
+
+            updateHumidity();
+        });
+    </script>
+</body>
+</html>

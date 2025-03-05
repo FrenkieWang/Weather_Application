@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wind Speed</title>
+    <link rel="stylesheet" href="./wind.css">
+</head>
+<body>
+    <nav>
+        <a href="../index.html" id="backButtonButton">Back</a>
+    </nav>
+
+    <h1 id="title">Wind Speed</h1>
+    <div id="threshold">Threshold: < 20km</div>
+    <div class="wind-container">
+        <div id="icon">💨</div>
+        <p id="wind-data"></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentCityData = JSON.parse(localStorage.getItem('currentCityData'));
+            if (currentCityData) {
+                const windSpeedStr = currentCityData.windSpeed;
+                const windSpeed = parseInt(windSpeedStr.split('km')[0], 10);
+                
+                document.getElementById('title').innerHTML = `${currentCityData.cityName}'s Wind Speed`;
+                document.getElementById('wind-data').innerHTML = `${currentCityData.windSpeed}`;
+                document.getElementById('icon').style.backgroundColor = 
+                    windSpeed >= 20 ? 'orange' : 'lightblue';
+            } else {
+                document.getElementById('wind-data').innerHTML = 'No data available';
+            }
+        });
+    </script>
+</body>
+</html>
