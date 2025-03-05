@@ -5,3 +5,6 @@
 2) Open Terminal, type `npm install -g http-server` (install http-server)
 3) Open Terminal, type `http-server` (run the project with http-server)
 4) Open a web browser, input URL `http://localhost:8080/`(local project)
+
+This project will be running on:
+https://frenkiewang.github.io/Weather_Application/index.html
