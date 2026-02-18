@@ -53,4 +53,4 @@ Implementing functionality using JavaScript, including fetching data from the JS
 #### Link:
 
 This project will be running on:
-https://frenkiewang.github.io/Weather_Application/index.html
+https://frenkiewang.github.io/Weather_Application/
