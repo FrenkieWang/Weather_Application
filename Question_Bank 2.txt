@@ -1,5 +1,0 @@
-	
-Question 1: What is the purpose of the '.then()' function in JavaScript and why does it need brackets inside it? 
-
-	
-Question 2: What would happen if we didn't use the '.then()' function when retrieving data?
