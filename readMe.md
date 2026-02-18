@@ -1,4 +1,4 @@
-# Assignment 2: Weather JSON Application
+# Weather JSON Application
 
 ## Introduction
 
